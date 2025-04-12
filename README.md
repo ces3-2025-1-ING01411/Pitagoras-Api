@@ -69,10 +69,13 @@ curl -X GET "http://localhost:8000/inscripciones/carrera?nombre=Ingenieria%20de%
 ]
 ```
 
-#### GET /inscripciones/priorizadas
+### 📌 Obtener inscripciones priorizadas
+**Descripción:**  Devuelve las inscripciones ordenadas por nivel de prioridad, permitiendo ver primero las de mayor urgencia.
+- **URL PETICIÓN:**
 ```bash
 curl -X GET "http://localhost:8000/inscripciones/priorizadas"
 ```
+- **RESPUESTA:**
 ```json
 [
   {
@@ -117,7 +120,9 @@ curl -X GET "http://localhost:8000/inscripciones/priorizadas"
 ]
 ```
 
-#### POST /inscripciones
+### 📌 Crear una nueva inscripción
+**Descripción:**  Registra una nueva inscripción en la base de datos si cumple con las validaciones (estado válido, no duplicada, máximo 7 por estudiante).
+- **URL PETICIÓN:**
 ```bash
 curl -X POST "http://localhost:8000/inscripciones" \
 -H "Content-Type: application/json" \
@@ -134,6 +139,8 @@ curl -X POST "http://localhost:8000/inscripciones" \
 		"promedioAcumulado": 4.9
 	}'
 ```
+
+- **RESPUESTA:**
 ```json
 {
   "success": "Inscripción creada con éxito."
