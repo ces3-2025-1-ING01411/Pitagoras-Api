@@ -128,11 +128,18 @@ public class InscripcionServlet extends HttpServlet {
 
         Gson gson = new Gson();
         InscripcionDAO inscripcion = gson.fromJson(request.getReader(), InscripcionDAO.class);
-        System.out.println(inscripcion);
-        InscripcionService.calcularPrioridad(inscripcion);
-        //InscripcionService.crearInscripcion(inscripcion);
+        Map<String, String> responseCrear = InscripcionService.crearInscripcion(inscripcion, response);
+        if (responseCrear.containsKey("error")) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            String jsonResponse = gson.toJson(responseCrear);
+            out.println(jsonResponse);
+            out.flush();
+            return;
+        }
 
-        String jsonResponse = gson.toJson(inscripcion);
+        response.setStatus(HttpServletResponse.SC_CREATED);
+        String jsonResponse = gson.toJson(responseCrear);
+
         out.println(jsonResponse);
         out.flush();
     }

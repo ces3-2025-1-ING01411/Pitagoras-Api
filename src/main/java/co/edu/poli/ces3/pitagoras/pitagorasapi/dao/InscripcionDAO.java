@@ -17,8 +17,7 @@ public class InscripcionDAO {
     public InscripcionDAO() {
     }
 
-    public InscripcionDAO(int id, String estudiante, String documento, String carrera, String asignatura, String semestre, String fechaInscripcion, String estado, int creditos, int prioridad, double promedioAcumulado) {
-        this.id = id;
+    public InscripcionDAO(String estudiante, String documento, String carrera, String asignatura, String semestre, String fechaInscripcion, String estado, int creditos, double promedioAcumulado) {
         this.estudiante = estudiante;
         this.documento = documento;
         this.carrera = carrera;
@@ -27,7 +26,6 @@ public class InscripcionDAO {
         this.fechaInscripcion = fechaInscripcion;
         this.estado = estado;
         this.creditos = creditos;
-        this.prioridad = prioridad;
         this.promedioAcumulado = promedioAcumulado;
     }
 
