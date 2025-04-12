@@ -96,12 +96,19 @@ public class InscripcionServlet extends HttpServlet {
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }
-
             return;
         }
 
         if (request.getPathInfo() != null && request.getPathInfo().equalsIgnoreCase("/priorizadas")) {
+            ArrayList<InscripcionDAO> inscripcionesPriorizadas = InscripcionService.ordernarInscripciones();
 
+            response.setStatus(HttpServletResponse.SC_OK);
+            PrintWriter out = response.getWriter();
+            Gson gson = new Gson();
+            String jsonResponse = gson.toJson(inscripcionesPriorizadas);
+            out.println(jsonResponse);
+            out.flush();
+            return;
         }
 
         response.setStatus(HttpServletResponse.SC_OK);
@@ -121,7 +128,9 @@ public class InscripcionServlet extends HttpServlet {
 
         Gson gson = new Gson();
         InscripcionDAO inscripcion = gson.fromJson(request.getReader(), InscripcionDAO.class);
-        InscripcionService.crearInscripcion(inscripcion);
+        System.out.println(inscripcion);
+        InscripcionService.calcularPrioridad(inscripcion);
+        //InscripcionService.crearInscripcion(inscripcion);
 
         String jsonResponse = gson.toJson(inscripcion);
         out.println(jsonResponse);

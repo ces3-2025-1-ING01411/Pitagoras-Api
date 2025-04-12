@@ -31,6 +31,19 @@ public class InscripcionDAO {
         this.promedioAcumulado = promedioAcumulado;
     }
 
+    public InscripcionDAO(int id, String estudiante, String documento, String carrera, String asignatura, String semestre, String fechaInscripcion, String estado, int creditos, double promedioAcumulado) {
+        this.id = id;
+        this.estudiante = estudiante;
+        this.documento = documento;
+        this.carrera = carrera;
+        this.asignatura = asignatura;
+        this.semestre = semestre;
+        this.fechaInscripcion = fechaInscripcion;
+        this.estado = estado;
+        this.creditos = creditos;
+        this.promedioAcumulado = promedioAcumulado;
+    }
+
     public int getId() {
         return id;
     }
